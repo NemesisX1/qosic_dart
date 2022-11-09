@@ -52,7 +52,8 @@ final transactionRef = await qosic.pay(
 
 Timer.periodic(
     const Duration(
-      seconds: 10,
+      seconds: 10, /// feel free to give your own second to wait
+                   /// but I will advice you between 7 and 10 secs
     ),
     (timer) async {
       final status = await qosic.getPaymentStatus(
