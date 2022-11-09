@@ -8,7 +8,7 @@
 /// A Very Good Project created by Very Good CLI.
 library qosic_dart;
 
-export 'src/apis/api.dart';
+export 'src/apis/apis.dart';
 export 'src/helpers/enums.dart';
 export 'src/helpers/exceptions.dart';
 export 'src/qosic_dart.dart';

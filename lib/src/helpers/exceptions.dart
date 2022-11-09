@@ -2,6 +2,7 @@ class QosicException implements Exception {
   ///
   QosicException(
     this.msg, {
+    this.responseMsg,
     required this.data,
   });
 
@@ -10,4 +11,7 @@ class QosicException implements Exception {
 
   ///
   Object data;
+
+  ///
+  String? responseMsg;
 }

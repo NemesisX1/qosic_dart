@@ -7,14 +7,26 @@ enum QosicNetwork {
   moov,
 }
 
-// Basic enum to handle qosic contries
+/// Basic enum to handle qosic contries
 enum QosicCountry {
+  ///
   benin,
+
+  ///
   togo,
+
+  ///
+  nigeria,
 }
 
-// enum QosicStatus {
-//   SUCCESSFUL,
-//   PENDING,
-//   FAILED,
-// }
+/// Basic enum to handle qosic contries
+enum QosicStatus {
+  ///
+  successfull,
+
+  ///
+  pending,
+
+  ///
+  failed,
+}

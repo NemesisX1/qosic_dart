@@ -15,6 +15,9 @@ class Endpoints {
   /// refund payment url
   static const refund = 'refund';
 
+  /// deposit url
+  static const deposit = 'deposit';
+
   /// get transaction status url
   static const getTransactionsStatus = 'gettransactionstatus';
 }
