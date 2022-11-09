@@ -46,9 +46,7 @@ final qosic = QosicDart(
 
 final transactionRef = await qosic.pay(
     network: QosicNetwork.mtn,
-    phoneNumber: 'XXXXXXXX',
-
-    /// precedeed by the country code. ex: 229XXXXXXXX
+    phoneNumber: 'XXXXXXXX', /// precedeed by the country code. ex: 229XXXXXXXX
     amount: '1',
   );
 
