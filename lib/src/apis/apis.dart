@@ -24,7 +24,7 @@ extension Api on QosicDart {
     final baseUrl =
         currentContry == QosicCountry.benin ? Endpoints.bjUrl : Endpoints.tgUrl;
 
-    String? transferRef;
+    String? transactionReference;
 
     try {
       await dio.post(
@@ -36,7 +36,7 @@ extension Api on QosicDart {
           'clientid': network == QosicNetwork.mtn ? mtnKey : moovKey
         },
       ).then((value) {
-        transferRef = value.data['transref'] as String;
+        transactionReference = value.data['transref'] as String;
       });
     } on DioError catch (e) {
       if (enableLog) {
@@ -50,7 +50,7 @@ extension Api on QosicDart {
       );
     }
 
-    return transferRef;
+    return transactionReference;
   }
 
   /// Send money to the given [phoneNumber]
@@ -61,7 +61,7 @@ extension Api on QosicDart {
   }) async {
     final currentContry = getCountryFromNumber(phoneNumber);
 
-    String? transferRef;
+    String? transactionReference;
 
     final baseUrl =
         currentContry == QosicCountry.benin ? Endpoints.bjUrl : Endpoints.tgUrl;
@@ -76,7 +76,7 @@ extension Api on QosicDart {
           'clientid': network == QosicNetwork.mtn ? mtnKey : moovKey
         },
       ).then((value) {
-        transferRef = value.data['transref'] as String;
+        transactionReference = value.data['transref'] as String;
       });
     } on DioError catch (e) {
       if (enableLog) {
@@ -90,14 +90,14 @@ extension Api on QosicDart {
       );
     }
 
-    return transferRef;
+    return transactionReference;
   }
 
-  /// Refund user money from [transferRef]
+  /// Refund user money from [transactionReference]
   ///
   /// On success it will return true
   Future<bool> refund({
-    required String transferRef,
+    required String transactionReference,
     required QosicNetwork network,
     required QosicCountry country,
   }) async {
@@ -110,7 +110,7 @@ extension Api on QosicDart {
       await dio.post(
         baseUrl + Endpoints.refund,
         data: {
-          'transref': transferRef,
+          'transref': transactionReference,
           'clientid': network == QosicNetwork.mtn ? mtnKey : moovKey
         },
       ).then((value) {
@@ -135,7 +135,7 @@ extension Api on QosicDart {
 
   /// Get the current status of a transaction given its transaferRef
   Future<QosicStatus?> getPaymentStatus({
-    required String transferRef,
+    required String transactionReference,
     required QosicNetwork network,
     required QosicCountry country,
   }) async {
@@ -147,7 +147,7 @@ extension Api on QosicDart {
       await dio.post(
         baseUrl + Endpoints.getTransactionsStatus,
         data: {
-          'transref': transferRef,
+          'transref': transactionReference,
           'clientid': network == QosicNetwork.mtn ? mtnKey : moovKey
         },
       ).then((value) {

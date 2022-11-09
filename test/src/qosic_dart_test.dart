@@ -73,7 +73,7 @@ void main() {
         () async {
           final hasSucceed = await qosic.refund(
             network: QosicNetwork.mtn,
-            transferRef: 'xxxxxxxx',
+            transactionReference: 'xxxxxxxx',
             country: QosicCountry.benin,
           );
 
@@ -86,7 +86,7 @@ void main() {
         () async {
           final status = await qosic.getPaymentStatus(
             network: QosicNetwork.mtn,
-            transferRef: 'xxxxxxxxxx',
+            transactionReference: 'xxxxxxxxxx',
             country: QosicCountry.benin,
           );
 

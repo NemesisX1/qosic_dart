@@ -6,6 +6,10 @@
 
 A Very Good Project created by Very Good CLI.
 
+## About ❓
+
+This package is a simple way to handle [Qosic](http://qosic.com)'s USSD payment. It allows you to integrate mobile money payment into your Dart and Flutter app.
+
 ## Installation 💻
 
 **❗ In order to start using Qosic Dart you must have the [Dart SDK][dart_install_link] installed on your machine.**
@@ -20,7 +24,56 @@ dependencies:
 Install it:
 
 ```sh
-dart pub get
+dart pub get qosic_dart
+```
+
+---
+
+## Usage 🔨
+
+### Make a payment
+
+A simple example of how to compute a USSD payment with QOSIC
+
+```dart
+
+final qosic = QosicDart(
+  moovKey: 'XXXXXXXXXx',
+  mtnKey: 'XXXXXXXXXX',
+  username: 'XXXXXXXXXX',
+  password: 'XXXXXXXXX',
+);
+
+final transactionRef = await qosic.pay(
+    network: QosicNetwork.mtn,
+    phoneNumber: 'XXXXXXXX',
+
+    /// precedeed by the country code. ex: 229XXXXXXXX
+    amount: '1',
+  );
+
+Timer.periodic(
+    const Duration(
+      seconds: 10,
+    ),
+    (timer) async {
+      final status = await qosic.getPaymentStatus(
+        transactionReference: transactionRef!,
+        network: QosicNetwork.mtn,
+        country: QosicCountry.benin,
+      );
+
+      if (status == QosicStatus.successfull || status == QosicStatus.failed) {
+        timer.cancel();
+        if (status == QosicStatus.successfull) {
+          log("Success for payment");
+        } else {
+          log("Payment failed");
+        }
+      }
+    },
+);
+
 ```
 
 ---
@@ -67,4 +120,4 @@ open coverage/index.html
 [very_good_ventures_link_light]: https://verygood.ventures#gh-light-mode-only
 [very_good_ventures_link_dark]: https://verygood.ventures#gh-dark-mode-only
 [very_good_workflows_link]: https://github.com/VeryGoodOpenSource/very_good_workflows
-# qosic_dart
+
