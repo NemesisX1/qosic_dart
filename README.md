@@ -10,6 +10,9 @@ A Very Good Project created by Very Good CLI.
 
 This package is a simple way to handle [Qosic](http://qosic.com)'s USSD payment. It allows you to integrate mobile money payment into your Dart and Flutter app.
 
+🚨  **WARNING** 🚨
+**This client should only be used on the server side.**
+
 ## Installation 💻
 
 **❗ In order to start using Qosic Dart you must have the [Dart SDK][dart_install_link] installed on your machine.**
@@ -30,6 +33,8 @@ dart pub get qosic_dart
 ---
 
 ## Usage 🔨
+
+
 
 ### Make a payment
 
